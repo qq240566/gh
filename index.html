@@ -1,0 +1,302 @@
+
+
+
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+    <script type="text/javascript" src="https://www.lanzoui.com/includes/js/jquery.js"></script>
+    <title>违法举报</title>
+    <style>
+        body,td,th {
+            font-family:Arial,\5FAE\8F6F\96C5\9ED1, sans-serif;
+            font-size: 14px;
+            margin: 0px;
+            color: #333333;
+        }
+        .d2 {
+            font-size: 22px;
+            font-family: MingLiU, PMingLiU;
+            width: auto;
+            margin-right: auto;
+            margin-left: auto;
+            padding-left: 8%;
+            padding-right: 50px;
+            padding-top: 17px;
+            padding-bottom: 11px;
+        }
+        #date {
+            font-size: 12px;
+            color: #666666;
+            margin: auto;
+            padding: 7px 98px;
+            text-align: center;
+            width: auto;
+        }
+        .d5{
+            color: #000000;
+            font-size: 16px;
+        }
+        .h3{
+            color: #FFFF66;
+            font-weight: normal;
+            padding-bottom: 30px;
+            padding-top: 27px;
+            background-color: #19A9E5;
+            padding-right: 50px;
+            padding-left: 8%;
+            line-height: 2.1;
+            font-size: 16px;
+        }
+        .h9{
+            text-align: center;
+            padding: 7px;
+            border: 1px solid #FFFFFF;
+            color: #FFFFFF;
+        }
+        .d7{
+            padding-left: 8%;
+            margin-right: auto;
+            margin-left: auto;
+            width: auto;
+            padding-top: 17px;
+            padding-right: 50px;
+            padding-bottom: 98px;
+            color: #666666;
+        }
+        .m{
+            border: 1px solid #ccc;
+            padding: 9px;
+        //width: 500px;
+            font-size: 14px;
+            box-shadow: inset 0 1px 2px rgba(0,0,0,.125);
+            background-color: #fafafa;
+        }
+        .m:hover{border: 1px solid #19A9E5;}
+        .m2{
+            border: none;
+            color: #FF0000;
+            font-size: 14px;
+            font-weight: 700;
+        }
+        .anniu{
+            padding: 9px;
+            height: 39px;
+            width: 150px;
+            background-color: #FFFFFF;
+            color: #0099FF;
+        }
+        .anniu:disabled{
+            color: #757575;
+            background-color: #DEDEDE;
+            border: 2px solid #DEDEDE;}
+        .copy{
+            border-top: 1px dashed #CCCCCC;
+            border-right: 1px none #CCCCCC;
+            border-bottom: 1px dashed #CCCCCC;
+            border-left: 1px none #CCCCCC;
+            color: #888888;
+            line-height: 37px;
+            text-align: left;
+            padding: 7px;
+        }
+        span{
+            color: #8AD3F2;
+            font-size: 14px;
+            line-height: 2.3;
+        }
+        .p{
+            width: 709px;
+            margin-right: auto;
+            margin-left: auto;
+        }
+        .tc{
+            padding: 8px;
+            visibility: hidden;
+            background-color: #78E789;
+            border: 1px solid #009900;
+            font-size: 30px;
+            color: #FFFFFF;
+            line-height: 100px;
+        }
+        #f8{color: #75D84B;    display: none;}
+        input:focus{outline: 0;}
+        .m:focus{border: #52A6EF 1px solid;box-shadow: 0 0 3px rgba(82,166,239,.8);outline: 0;background-color:#fff}
+        .radio{position:absolute;left:-9999em}
+        .cb_empty{margin-bottom: 16px;font-weight:700;font-size:12px;background-color:#fff;border:1px #ddd solid;padding:0 16px;border-radius:3px;cursor:pointer;background-image:linear-gradient(#FCFCFC,#EEE);display:inline-block;line-height:28px;height:28px}
+        .cb_empty:hover{border:1px #ccc solid;background-image:linear-gradient(#EEE,#DDD)}
+        .cb_empty:active{box-shadow:inset 0 1px 6px rgba(0,0,0,.3)}
+        .checked{color:#fff;cursor:default;background:#379be9;border:1px #2287D5 solid;background-image:linear-gradient(#379BE9,#379BE9);box-shadow:inset 0 2px 6px rgba(0,0,0,.3)}
+        .checked:hover{border:1px #2287D5 solid;background-image:linear-gradient(#379BE9,#379BE9)}
+        ::-webkit-scrollbar{background:rgba(0,0,0,0.1);height: 8px;;width:8px}::-webkit-scrollbar-thumb{background-color:rgba(0,0,0,0.3)}
+        ::-webkit-scrollbar-thumb:hover {background:rgba(0,0,0,0.5);}
+        ::-webkit-scrollbar-thumb:active {background:rgba(0,0,0,0.6);}
+        #report{position: fixed;
+            width: 100%;
+            background: rgba(17, 17, 17, .3);
+            height: 100%;
+            top: 0;
+            border: 0;
+            z-index: 9;}
+        .report{background: #fff;
+            border-radius: 7px;
+            width: 300px;
+            text-align: center;
+            padding: 17px;
+            position: absolute;
+            margin: auto;
+            right: 0;
+            left: 0;
+            bottom: 0;
+            top: 0;
+            height: 80px;}
+        .report span{    margin: 0 15px;
+            cursor: pointer;
+            font-size: 16px;
+            color: #08f;}
+        .report_hd{padding-bottom: 20px;}
+    </style>
+    <script type="text/javascript">
+        function G(id){
+            return document.getElementById(id);
+        }
+        function ck(){
+            if(G('yourname').value == ''){
+                alert("请提供您的联系邮箱");
+                G('yourname').focus();
+                return false;
+            }
+            //if(G('qq').value == ''){
+            //alert("举报地址不正确，请返回重新获取。");
+            //G('qq').focus();
+            //return false;
+            //}
+            G('f9').disabled = true;
+            G('f9').value = "正在提交中...";
+        }
+    </script>
+</head>
+<body>
+<div class="d2">举报反馈</div>
+<div class="h3">
+    <span class="d5">举报反馈说明：</span>    <br />
+    请您留下宝贵意见和建议。
+</div>
+<div id="content">
+    <div class="main">
+        <form action="" method="post" onsubmit="return ck();">
+            <input type="hidden" name="lxp" value="1">
+            <input type="hidden" name="fileid" value="27904291">
+            <input type="hidden" name="vkey" value="ZktF9xLf">
+            <div class="d7">
+                <table width="100%" cellspacing="0" cellpadding="7" border="0">
+                    <tbody>
+                    <tr valign="top">
+                        <td valign="middle">
+                            <div align="left"><span class="field"><strong>联系邮箱/QQ:</strong></span>[必填]<br />
+                                <input type="text" class="m" maxlength="60" size="26" id="yourname" name="yourname" />
+                            </div></td>
+                    </tr>
+                    <tr valign="top">
+                        <td>
+                            <div align="left"><span class="field"><strong>详细描述:</strong></span><br />
+                                <textarea name="message" class="m" id="message" cols="60" rows="5" style="width: 100%;"></textarea>
+                                <span class="tip"></span></div></td>
+                    </tr>
+
+                    <tr valign="top">
+                        <td>
+                            <div>
+                                <input type="submit" id="f9" class="anniu" value="提 交" />
+                                <font id="f8"> 请稍后...</font>
+                            </div></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </form>
+    </div>
+    <!--<div id="report">
+        <div class="report">
+            <div class="report_hd">选择举报方式</div>
+            <span onclick="report(1);">匿名举报</span>
+            <span onclick="report(2);">实名举报</span>
+        </div>
+    </div>-->
+    <script type="text/javascript">
+        $('#pay label').click(function(){
+            var id=$(this).find('input').attr('id');
+            $('#'+id).attr('checked',true);
+            $($('#'+id).parent()).addClass('checked').siblings().removeClass('checked');
+        });
+        function report(id){
+            if(id ==1){
+                $("#report").hide();
+            }else{
+                window.location.href="/q/jb/report.php?f=27904291&l=1";
+            }
+        }
+    </script>
+    <script language="javascript">
+        function getdates()
+        {
+            var d=new Date();
+            var year=d.getFullYear();
+            var shows="&copy; " + year + " Lanzou";
+            document.getElementById("date").innerHTML=shows;
+        }
+    </script>
+    <div id='date'><script>getdates();</script></div>
+    </div>
+</body>
+
+
+<script language="javascript">
+function click() {
+if (event.button==2) {
+alert('想右键查看源代码？大胸弟，别想啦，')
+}
+}
+document.onmousedown=click
+
+</script>
+<script>
+document.onkeydown = function(){
+    if(window.event && window.event.keyCode == 123) {
+        alert("右键不成还想直接f12偷代码？告诉你这是不可能的！大胸弟这么执着吗？");
+        event.keyCode=0;
+        event.returnValue=false;
+    }
+    if(window.event && window.event.keyCode == 13) {
+        window.event.keyCode = 505;
+    }
+    if(window.event && window.event.keyCode == 8) {
+        alert(str+"\n请使用Del键进行字符的删除操作！");
+        window.event.returnValue=false;
+    }
+}
+document.oncontextmenu = function (event){
+    if(window.event){
+    event = window.event;
+    }
+    try{
+    var the = event.srcElement;
+        if (!((the.tagName == "INPUT" && the.type.toLowerCase() == "text") || the.tagName == "TEXTAREA")){
+        return false;
+        }
+        return true;
+    }
+    catch (e){
+        return false;
+    }
+}
+</script>
+
+</html>
+
+
+
+
+
+
